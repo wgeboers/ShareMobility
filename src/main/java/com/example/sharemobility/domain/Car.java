@@ -20,7 +20,7 @@ public abstract class Car implements Calculator {
     private String make;
     private String model;
     private int kilometers;
-    private float price;
+    private float hourlyRate;
     private String pickupTerms;
     private String returnTerms;
     private float longitude;
