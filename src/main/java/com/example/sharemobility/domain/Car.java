@@ -10,10 +10,11 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @Setter
-public abstract class Car implements Calculator {
+public class Car implements Calculator {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
-    private String id;
+    private Long id;
 
     @Column(nullable = false, length = 8)
     private String licensePlate;
