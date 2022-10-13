@@ -6,7 +6,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Entity
+@Entity //annotatie
 @Getter
 @Setter
 public class Listing {
@@ -25,7 +25,7 @@ public class Listing {
     }
 
     public int calculateBonuspoints(){
-
+        //waarop gebaseerd?
         return 0;
     }
 }
