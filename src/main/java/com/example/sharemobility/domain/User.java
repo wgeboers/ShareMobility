@@ -1,25 +1,28 @@
 package com.example.sharemobility.domain;
 
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "user_table")
 @NoArgsConstructor
+@Setter
+@Getter
 
-public abstract class User {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    protected Long id;
-    protected String username;
-    protected String password;
-    protected String firstname;
-    protected String lastname;
-    protected String address;
+    private Long id;
+
+    private String username;
+    private String password;
+    private String firstname;
+    private String lastname;
+    private String address;
 
     public User(String username, String password, String firstname, String lastname, String address) {
         this.username = username;
