@@ -1,5 +1,7 @@
 package com.example.sharemobility.domain;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -8,12 +10,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import javax.persistence.*;
 
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING)
+@JsonTypeInfo(use=JsonTypeInfo.Id.NAME, property = "type")
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = CarUser.class, name="CAR_USER"),
+        @JsonSubTypes.Type(value = CarOwner.class, name="CAR_OWNER")
+})
 @Table(name = "user_table")
 @NoArgsConstructor
 @Setter
 @Getter
 
-public class User {
+public abstract class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
