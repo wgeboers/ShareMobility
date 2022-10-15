@@ -7,8 +7,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -27,7 +25,7 @@ public abstract class Car implements Calculator {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(nullable = false, length = 8, unique = true)
+    @Column(nullable = false, length = 8, unique = true, updatable = false)
     private String licensePlate;
     private String make;
     private String model;
@@ -44,7 +42,7 @@ public abstract class Car implements Calculator {
     }
 
     public double calculateTCO() {
-        return (double) this.getPurchasePrice() + (this.getMileage() / this.getAmountOfYearsOwned()) * calculateUsageCostsPerKilometer();
+        return (double) this.getPurchasePrice() + (double) (this.getMileage() / this.getAmountOfYearsOwned()) * calculateUsageCostsPerKilometer();
     }
 
 }

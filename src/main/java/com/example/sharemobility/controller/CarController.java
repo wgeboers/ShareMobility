@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/cars")
@@ -41,6 +42,46 @@ public class CarController {
         } catch(IllegalArgumentException e) {
             logger.error("Error during creation of: " + newCar, e);
             return ResponseEntity.badRequest().build();
+        }
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Car> updateCar(@PathVariable Long id, @RequestBody Car updatedCar) {
+        try {
+            Optional<Car> optionalCar = carRepository.findById(id);
+
+            if(optionalCar.isPresent()) {
+                Car carOld = optionalCar.get();
+                carOld.setMake(updatedCar.getMake());
+                carOld.setModel(updatedCar.getModel());
+                carOld.setMileage(updatedCar.getMileage());
+                carOld.setHourlyRate(updatedCar.getHourlyRate());
+                carOld.setLongitude(updatedCar.getLongitude());
+                carOld.setLatitude(updatedCar.getLatitude());
+                carOld.setTermsOfPickup(updatedCar.getTermsOfPickup());
+                carOld.setTermsOfReturn(updatedCar.getTermsOfReturn());
+                carOld.setPurchasePrice(updatedCar.getPurchasePrice());
+                carOld.setAmountOfYearsOwned(updatedCar.getAmountOfYearsOwned());
+
+                return ResponseEntity.ok(carRepository.save(carOld));
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+
+
+        } catch(IllegalArgumentException e) {
+            logger.error("Error during editing of: " + updatedCar, e);
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<HttpStatus> delete(@PathVariable Long id) {
+        if((!carRepository.existsById(id))) {
+            return ResponseEntity.notFound().build();
+        } else {
+            carRepository.deleteById(id);
+            return ResponseEntity.noContent().build();
         }
     }
 }
