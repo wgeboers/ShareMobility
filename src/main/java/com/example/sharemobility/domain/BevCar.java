@@ -6,23 +6,20 @@ import lombok.Setter;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-
+import java.math.BigDecimal;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
-@DiscriminatorValue("ICE")
-public class IceCar extends Car {
-    FuelType fuelType;
-    private double efficiency;
-
+@DiscriminatorValue("BEV")
+public class BevCar extends Car {
+    private double rechargeTimeInMinutes;
+    private int maxRangeInKilometers;
+    private int maxCapacityOfBattery;
 
     public double calculateUsageCostsPerKilometer() {
-        if(fuelType == FuelType.LPG) {
-            return (efficiency * 1.05);
-        } else {
-            return (efficiency * 2.20);
-        }
+        return (double) (this.maxRangeInKilometers / maxCapacityOfBattery) * 0.75;
     }
+
 }
