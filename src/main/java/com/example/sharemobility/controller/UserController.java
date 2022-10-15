@@ -6,7 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -16,6 +17,7 @@ import java.util.Optional;
 public class UserController {
 
     private final UserRepository userRepository;
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     public UserController(UserRepository userRepository) {
@@ -29,7 +31,7 @@ public class UserController {
         if (username == null) {
             found.addAll(userRepository.findAll());
         } else {
-            found.addAll(userRepository.findUserByusernameContainsIgnoreCase(username));
+            found.addAll(userRepository.findByUsernameContainsIgnoreCase(username));
         }
         if (found.isEmpty()) {
             return ResponseEntity.noContent().build();
@@ -37,6 +39,18 @@ public class UserController {
 
         return ResponseEntity.ok(found);
     }
+// Function for checking username and password
+//    @GetMapping("/login")
+//    public ResponseEntity<List<User>> getByUsernameAndPassword(@RequestBody User user) {
+//        List<User> found = userRepository.findByUsernameEqualsIgnoreCaseAndUsernameEquals(user.getUsername(), user.getPassword());
+//        logger.error("Values of username and password: " + user.getUsername() + " : " + user.getPassword() );
+//
+//        if (found.isEmpty()) {
+//            return ResponseEntity.noContent().build();
+//        }
+//
+//        return ResponseEntity.ok(found);
+//    }
 
     @GetMapping("/{id}")
     public ResponseEntity<Optional<User>> getById(@PathVariable Long id) {

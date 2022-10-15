@@ -9,7 +9,7 @@ import java.util.List;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
-    List<User> findUserByusernameContainsIgnoreCase(String username);
-
+    List<User> findByUsernameContainsIgnoreCase(String username);
+    List<User> findByUsernameEqualsIgnoreCaseAndUsernameEquals(String username, String password);
 
 }
