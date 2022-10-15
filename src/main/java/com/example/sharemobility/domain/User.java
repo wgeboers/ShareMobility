@@ -17,7 +17,7 @@ import javax.persistence.*;
         @JsonSubTypes.Type(value = CarUser.class, name="CAR_USER"),
         @JsonSubTypes.Type(value = CarOwner.class, name="CAR_OWNER")
 })
-@Table(name = "user_table")
+@Table(name = "user_table") // The name user is a keyword in SQL
 @NoArgsConstructor
 @Setter
 @Getter
