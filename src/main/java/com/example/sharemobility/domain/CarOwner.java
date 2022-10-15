@@ -13,8 +13,15 @@ import java.util.List;
 @Getter
 @Setter
 public class CarOwner extends User{
+    @OneToMany
+    private ArrayList<Car> cars;
 
     public CarOwner(String username, String password, String firstname, String lastname, String address) {
         super(username, password, firstname, lastname, address);
+        cars = new ArrayList<>();
+
+    }
+    public void addCar(Car car) {
+        cars.add(car);
     }
 }

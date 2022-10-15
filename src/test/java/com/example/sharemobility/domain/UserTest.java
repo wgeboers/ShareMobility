@@ -30,4 +30,16 @@ public class UserTest {
         assertEquals("The Shire", carUser.getAddress());
         assertEquals(0, carUser.getBonusPoints());
     }
+
+    @Test
+    void ceckCarAmountCarOwner() {
+        CarOwner owner = new CarOwner("lotr", "letmein", "Bilbo" ,"Baggins", "The Shire");
+
+        assertEquals(0, owner.getCars().size());
+
+        owner.addCar(new Car("29-GHF-2"));
+
+        assertEquals(1, owner.getCars().size());
+
+    }
 }
