@@ -6,23 +6,18 @@ import lombok.Setter;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-
+import java.math.BigDecimal;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
-@DiscriminatorValue("ICE")
-public class IceCar extends Car {
-    FuelType fuelType;
-    private double efficiency;
-
+@DiscriminatorValue("FCEV")
+public class FcevCar extends Car {
+    private int maxRangeInKilometers;
+    private int amountOfRefuellingStationsInArea;
 
     public double calculateUsageCostsPerKilometer() {
-        if(fuelType == FuelType.LPG) {
-            return efficiency * 1.05;
-        } else {
-            return efficiency * 2.20;
-        }
+        return 0.10;
     }
 }

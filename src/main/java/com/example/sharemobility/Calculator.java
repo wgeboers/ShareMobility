@@ -1,6 +1,8 @@
 package com.example.sharemobility;
 
+import java.math.BigDecimal;
+
 public interface Calculator {
-    float calculateTCO();
-    float calculateUsageCostsPerKilometer();
+    double calculateTCO();
+    double calculateUsageCostsPerKilometer();
 }
