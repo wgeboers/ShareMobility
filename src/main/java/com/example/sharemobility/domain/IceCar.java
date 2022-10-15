@@ -20,9 +20,9 @@ public class IceCar extends Car {
 
     public double calculateUsageCostsPerKilometer() {
         if(fuelType == FuelType.LPG) {
-            return efficiency * 1.05;
+            return (efficiency * 1.05);
         } else {
-            return efficiency * 2.20;
+            return (efficiency * 2.20);
         }
     }
 }
