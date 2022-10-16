@@ -30,7 +30,7 @@ public class UserService {
        return -1L;
     }
 
-    public boolean isCorrectPassword(User user, String password) {
+    private boolean isCorrectPassword(User user, String password) {
         return user.getPassword().equals(password);
     }
 
