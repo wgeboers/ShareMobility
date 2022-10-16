@@ -3,6 +3,7 @@ package com.example.sharemobility.domain;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.mapping.Set;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ import java.util.List;
 @Setter
 public class CarOwner extends User{
     @OneToMany
-    private ArrayList<Car> cars;
+    private List<Car> cars;
 
     public CarOwner(String username, String password, String firstname, String lastname, String address) {
         super(username, password, firstname, lastname, address);
