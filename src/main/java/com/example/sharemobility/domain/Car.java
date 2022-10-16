@@ -42,7 +42,7 @@ public abstract class Car implements Calculator {
     }
 
     public double calculateTCO() {
-        return (double) this.getPurchasePrice() + (double) (this.getMileage() / this.getAmountOfYearsOwned()) * calculateUsageCostsPerKilometer();
+        return this.getPurchasePrice() + (this.getMileage() / this.getAmountOfYearsOwned()) * calculateUsageCostsPerKilometer();
     }
 
 }

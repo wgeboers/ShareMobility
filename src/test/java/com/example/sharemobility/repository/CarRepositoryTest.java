@@ -62,6 +62,7 @@ public class CarRepositoryTest {
 
     @Test
     void saveCarTestAssertException() {
+        //Exception thrown when you try to save a car without a license plate.
         Exception e = assertThrows(DataIntegrityViolationException.class, () -> {
             carRepository.save(myCar3);
         });

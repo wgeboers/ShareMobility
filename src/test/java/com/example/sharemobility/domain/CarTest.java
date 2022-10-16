@@ -9,17 +9,18 @@ import static org.mockito.Mockito.when;
 
 public class CarTest {
 
-    @Test
-    void calculateCostsTestFunctionality() {
-        Car myCar = mock(BevCar.class);
-
-        assertNotNull(myCar);
-        when(myCar.calculateUsageCostsPerKilometer()).thenReturn(0.10);
-        when(myCar.calculateTCO()).thenReturn(10000.0);
-        assertEquals(myCar.calculateTCO(), 10000.0);
-        assertEquals(myCar.calculateUsageCostsPerKilometer(), 0.10);
-
-    }
+    //rewrite maybe....
+//    @Test
+//    void calculateCostsTestFunctionality() {
+//        Car myCar = mock(BevCar.class);
+//
+//        assertNotNull(myCar);
+//        when(myCar.calculateUsageCostsPerKilometer()).thenReturn(0.10);
+//        when(myCar.calculateTCO()).thenReturn(10000.0);
+//        assertEquals(myCar.calculateTCO(), 10000.0);
+//        assertEquals(myCar.calculateUsageCostsPerKilometer(), 0.10);
+//
+//    }
 
     @Test
     void calculateCostTestActualCalculations() {
