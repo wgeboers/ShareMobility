@@ -14,7 +14,7 @@ import java.util.List;
 @Getter
 @Setter
 public class CarOwner extends User{
-    @OneToMany
+    @OneToMany(mappedBy = "carOwner")
     private List<Car> cars;
 
     public CarOwner(String username, String password, String firstname, String lastname, String address) {
