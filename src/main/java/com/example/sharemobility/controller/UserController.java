@@ -2,6 +2,7 @@ package com.example.sharemobility.controller;
 
 import com.example.sharemobility.domain.User;
 import com.example.sharemobility.repository.UserRepository;
+import com.example.sharemobility.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,11 +18,14 @@ import java.util.Optional;
 public class UserController {
 
     private final UserRepository userRepository;
+
+    private final UserService userService;
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
-    public UserController(UserRepository userRepository) {
+    public UserController(UserRepository userRepository, UserService userService) {
         this.userRepository = userRepository;
+        this.userService = userService;
     }
 
     @GetMapping
@@ -39,18 +43,17 @@ public class UserController {
 
         return ResponseEntity.ok(found);
     }
-// Function for checking username and password
-//    @GetMapping("/login")
-//    public ResponseEntity<List<User>> getByUsernameAndPassword(@RequestBody User user) {
-//        List<User> found = userRepository.findByUsernameEqualsIgnoreCaseAndUsernameEquals(user.getUsername(), user.getPassword());
-//        logger.error("Values of username and password: " + user.getUsername() + " : " + user.getPassword() );
-//
-//        if (found.isEmpty()) {
-//            return ResponseEntity.noContent().build();
-//        }
-//
-//        return ResponseEntity.ok(found);
-//    }
+
+    @GetMapping("/login")
+    public ResponseEntity<User> getByUsernameAndPassword(@RequestParam String username, @RequestParam String password) {
+        User found = userRepository.findUserById(userService.userLogin(username, password));
+       logger.error("Values of username and password: " + username + " : " + password );
+
+        if (found == null) {
+            return ResponseEntity.noContent().build();
+        }
+       return ResponseEntity.ok(found);
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<Optional<User>> getById(@PathVariable Long id) {
@@ -64,12 +67,15 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<User> create(@RequestBody User newUser) {
-        try {
-            User user = userRepository.save(newUser);
-            return new ResponseEntity<>(user, HttpStatus.CREATED);
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().build();
+        if (userRepository.findByUsernameContainsIgnoreCase(newUser.getUsername()).isEmpty() ) {
+            try {
+                User user = userRepository.save(newUser);
+                return new ResponseEntity<>(user, HttpStatus.CREATED);
+            } catch (IllegalArgumentException e) {
+                return ResponseEntity.badRequest().build();
+            }
         }
+        return new ResponseEntity<>(null, HttpStatus.CONFLICT);
     }
 
     @DeleteMapping("/{id}")
