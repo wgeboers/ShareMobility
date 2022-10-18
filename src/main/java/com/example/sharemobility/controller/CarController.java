@@ -34,6 +34,18 @@ public class CarController {
         return ResponseEntity.ok(found);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Optional<Car>> getById(@PathVariable Long id) {
+        Optional<Car> found = carRepository.findById(id);
+
+        if(found.isPresent()) {
+            return ResponseEntity.ok(found);
+        }
+
+        return ResponseEntity.noContent().build();
+
+    }
+
     @PostMapping
     public ResponseEntity<Car> newCar(@RequestBody Car newCar) {
         try {
