@@ -25,6 +25,10 @@ public abstract class Car implements Calculator {
     @Column(name = "id", nullable = false)
     private Long id;
 
+    @ManyToOne
+    @JoinColumn(name = "carowner_id", nullable = false)
+    private CarOwner carOwner;
+
     @Column(nullable = false, length = 8, unique = true, updatable = false)
     private String licensePlate;
     private String make;
