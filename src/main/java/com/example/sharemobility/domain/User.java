@@ -37,9 +37,6 @@ public abstract class User {
     private String lastname;
     private String address;
 
-//    @ManyToMany(mappedBy = "users")
-//    private Set<Reservation> reservations;
-
     public User(String username, String password, String firstname, String lastname, String address) {
         this.username = username;
         this.password = password;

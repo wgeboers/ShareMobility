@@ -72,4 +72,14 @@ public class ReservationController {
         Reservation reservation = reservationService.addReservation(reservationDto.getUserId(), reservationDto.getCarId(), reservationDto.getStartReservation(), reservationDto.getEndReservation());
         return null;
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<HttpStatus> delete(@PathVariable Long id) {
+        if((!reservationRepository.existsById(id))) {
+           return ResponseEntity.notFound().build();
+        } else {
+            reservationRepository.deleteById(id);
+            return ResponseEntity.noContent().build();
+        }
+    }
 }

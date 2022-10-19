@@ -45,9 +45,6 @@ public abstract class Car implements Calculator {
     private int purchasePrice;
     private int amountOfYearsOwned;
 
-//    @ManyToMany(mappedBy = "cars")
-//    private Set<Reservation> reservations;
-
     public Car() {
     }
 
