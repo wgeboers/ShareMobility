@@ -56,6 +56,17 @@ public class ReservationController {
         return ResponseEntity.ok(found);
     }
 
+    @GetMapping("/byUser/{id}")
+    public ResponseEntity<List<Reservation>> getByUserId(@PathVariable Long id) {
+        List<Reservation> found = new ArrayList<>(reservationRepository.getByUserId(id));
+
+        if (found.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+
+        return ResponseEntity.ok(found);
+    }
+
     @PostMapping
     public ResponseEntity<ReservationDto> reserve(@RequestBody ReservationDto reservationDto) {
         Reservation reservation = reservationService.addReservation(reservationDto.getUserId(), reservationDto.getCarId(), reservationDto.getStartReservation(), reservationDto.getEndReservation());
