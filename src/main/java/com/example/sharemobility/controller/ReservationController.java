@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -72,6 +73,25 @@ public class ReservationController {
         try{
             Reservation reservation = reservationService.addReservation(reservationDto.getUserId(), reservationDto.getCarId(), reservationDto.getStartReservation(), reservationDto.getEndReservation());
             return new ResponseEntity<>(reservationDto, HttpStatus.CREATED);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Reservation> updateReservation(@PathVariable Long id, @RequestBody ReservationDto reservationDto) {
+        try {
+            Optional<Reservation> optionalReservation = reservationRepository.findById(id);
+
+            if (optionalReservation.isPresent()) {
+                Reservation reservationOld = optionalReservation.get();
+                reservationOld.setStartReservation(reservationDto.getStartReservation());
+                reservationOld.setEndReservation(reservationDto.getEndReservation());
+
+                return ResponseEntity.ok(reservationRepository.save(reservationOld));
+            } else {
+                return ResponseEntity.notFound().build();
+            }
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().build();
         }
