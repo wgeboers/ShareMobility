@@ -5,6 +5,9 @@ import lombok.Setter;
 
 import java.time.LocalDateTime;
 
+//Data Transfer Object
+//entity mapping
+
 @Getter
 @Setter
 public class ReservationDto {

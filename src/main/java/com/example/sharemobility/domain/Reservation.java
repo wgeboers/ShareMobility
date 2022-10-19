@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Set;
 
-@Entity
+@Entity //annotatie
 @Getter
 @Setter
 public class Reservation {
@@ -14,10 +14,10 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne //associatie unidirectioneel
     private Car car;
 
-    @ManyToOne
+    @ManyToOne //associatie unidirectioneel
     private User user;
 
     private LocalDateTime startReservation;
