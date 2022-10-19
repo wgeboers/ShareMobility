@@ -2,10 +2,11 @@ package com.example.sharemobility.domain;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.Set;
 
 @Entity
-@NoArgsConstructor
 @Getter
 @Setter
 public class Reservation {
@@ -13,17 +14,22 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST})
-    @JoinColumn(name = "user_id")
-    private Set<User> users;
+    @ManyToOne
+    private Car car;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST})
-    @JoinColumn(name = "car_id")
-    private Set<Car> cars;
+    @ManyToOne
+    private User user;
 
-    public Reservation(User user, Car car) {
-        users.add(user);
-        cars.add(car);
+    private LocalDateTime startReservation;
+    private LocalDateTime endReservation;
+
+    public Reservation() {
     }
 
+    public Reservation(Car car, User user, LocalDateTime startReservation, LocalDateTime endReservation) {
+        this.car = car;
+        this.user = user;
+        this.startReservation = startReservation;
+        this.endReservation = endReservation;
+    }
 }

@@ -7,6 +7,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -25,9 +28,9 @@ public abstract class Car implements Calculator {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "carowner_id", nullable = false)
-    private CarOwner carOwner;
+    //@ManyToOne
+    //@JoinColumn(name = "carowner_id", nullable = false)
+    //private CarOwner carOwner;
 
     @Column(nullable = false, length = 8, unique = true, updatable = false)
     private String licensePlate;
@@ -41,6 +44,9 @@ public abstract class Car implements Calculator {
     private String termsOfReturn;
     private int purchasePrice;
     private int amountOfYearsOwned;
+
+//    @ManyToMany(mappedBy = "cars")
+//    private Set<Reservation> reservations;
 
     public Car() {
     }

@@ -1,6 +1,7 @@
 package com.example.sharemobility.controller;
 
 import com.example.sharemobility.controller.dto.ReservationDto;
+import com.example.sharemobility.domain.Reservation;
 import com.example.sharemobility.service.ReservationService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,13 +17,8 @@ public class ReservationController {
     }
 
     @PostMapping
-    ResponseEntity<ReservationDto> reservation(@RequestBody ReservationDto reservationDto) {
-        boolean canReserve = reservationService.addReservation(reservationDto.getUserId(), reservationDto.getCarId());
-
-        if (canReserve) {
-            return new ResponseEntity<>(reservationDto, HttpStatus.CREATED);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    ResponseEntity<ReservationDto> reserve(@RequestBody ReservationDto reservationDto) {
+        Reservation reservation = reservationService.addReservation(reservationDto.getUserId(), reservationDto.getCarId(), reservationDto.getStartReservation(), reservationDto.getEndReservation());
+        return null;
     }
 }

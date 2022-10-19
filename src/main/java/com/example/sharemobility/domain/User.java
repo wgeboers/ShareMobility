@@ -8,6 +8,9 @@ import lombok.Setter;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -33,6 +36,9 @@ public abstract class User {
     private String firstname;
     private String lastname;
     private String address;
+
+//    @ManyToMany(mappedBy = "users")
+//    private Set<Reservation> reservations;
 
     public User(String username, String password, String firstname, String lastname, String address) {
         this.username = username;

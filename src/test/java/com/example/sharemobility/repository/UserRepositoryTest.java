@@ -22,17 +22,17 @@ public class UserRepositoryTest {
 
     private User user2;
 
-    @BeforeEach
-    public void initEach() {
-        userRepository.deleteAll();
-        userRepository.flush();
-
-        user1 = new CarUser("blotr", "letmein", "Bilbo", "Baggins", "The Shire 1", 10);
-        user2 = new CarOwner("clotr", "letmein2", "Frodo", "Baggins", "The Shire2");
-
-        userRepository.save(user1);
-        userRepository.save(user2);
-    }
+//    @BeforeEach
+//    public void initEach() {
+//        userRepository.deleteAll();
+//        userRepository.flush();
+//
+//        user1 = new CarUser("blotr", "letmein", "Bilbo", "Baggins", "The Shire 1", 10);
+//        user2 = new CarOwner("clotr", "letmein2", "Frodo", "Baggins", "The Shire2");
+//
+//        userRepository.save(user1);
+//        userRepository.save(user2);
+//    }
 
     @Test
     void findByUsernameContainsIgnoreCase() {
