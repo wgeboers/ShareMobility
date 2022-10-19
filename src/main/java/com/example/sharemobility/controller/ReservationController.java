@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/reservation")
@@ -31,6 +32,17 @@ public class ReservationController {
         }
 
         return ResponseEntity.ok(found);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Optional<Reservation>> getById(@PathVariable Long id) {
+        Optional<Reservation> found = reservationRepository.findById(id);
+
+        if(found.isPresent()) {
+            return ResponseEntity.ok(found);
+        }
+
+        return ResponseEntity.noContent().build();
     }
 
     @PostMapping
