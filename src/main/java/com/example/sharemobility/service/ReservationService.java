@@ -24,10 +24,10 @@ public class ReservationService {
     }
 
     public Reservation addReservation(Long userId, Long carId, LocalDateTime start, LocalDateTime end){
-        User user = userRepository.findUserById(userId);
-        Car car = carRepository.findCarById(carId);
+        Optional<User> user = userRepository.findById(userId);
+        Optional<Car> car = carRepository.findById(carId);
 
-        Reservation reservation = new Reservation(car, user, start, end);
+        Reservation reservation = new Reservation(car.get(), user.get(), start, end);
         if (reservation != null) {
             reservationRepository.save(reservation);
         }

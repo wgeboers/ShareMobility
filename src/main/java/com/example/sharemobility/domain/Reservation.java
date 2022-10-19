@@ -12,9 +12,10 @@ import java.util.Set;
 public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "Reservation_id", nullable =  false, unique = true)
     private Long id;
 
-    @ManyToOne //associatie unidirectioneel
+    @ManyToOne//associatie unidirectioneel
     private Car car;
 
     @ManyToOne //associatie unidirectioneel

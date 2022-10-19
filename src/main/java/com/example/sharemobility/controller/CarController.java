@@ -34,9 +34,9 @@ public class CarController {
         return ResponseEntity.ok(found);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Optional<Car>> getById(@PathVariable Long id) {
-        Optional<Car> found = carRepository.findById(id);
+    @GetMapping("/{carId}")
+    public ResponseEntity<Optional<Car>> getById(@PathVariable Long carId) {
+        Optional<Car> found = carRepository.findById(carId);
 
         if(found.isPresent()) {
             return ResponseEntity.ok(found);

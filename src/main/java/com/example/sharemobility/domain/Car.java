@@ -25,15 +25,18 @@ import java.util.Set;
 public abstract class Car implements Calculator {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
+    @Column(name = "car_id", nullable = false)
     private Long id;
 
-    //@ManyToOne
-    //@JoinColumn(name = "carowner_id", nullable = false)
-    //private CarOwner carOwner;
+
 
     @Column(nullable = false, length = 8, unique = true, updatable = false)
     private String licensePlate;
+
+    @ManyToOne
+    @JoinColumn(name = "carowner_id")
+    private CarOwner carOwner;
+
     private String make;
     private String model;
     private int mileage;
@@ -52,4 +55,22 @@ public abstract class Car implements Calculator {
         return this.getPurchasePrice() + (this.getMileage() / this.getAmountOfYearsOwned()) * calculateUsageCostsPerKilometer();
     }
 
+    @Override
+    public String toString() {
+        return "Car{" +
+                "id=" + id +
+                ", licensePlate='" + licensePlate + '\'' +
+                ", carOwner=" + carOwner +
+                ", make='" + make + '\'' +
+                ", model='" + model + '\'' +
+                ", mileage=" + mileage +
+                ", hourlyRate=" + hourlyRate +
+                ", longitude=" + longitude +
+                ", latitude=" + latitude +
+                ", termsOfPickup='" + termsOfPickup + '\'' +
+                ", termsOfReturn='" + termsOfReturn + '\'' +
+                ", purchasePrice=" + purchasePrice +
+                ", amountOfYearsOwned=" + amountOfYearsOwned +
+                '}';
+    }
 }

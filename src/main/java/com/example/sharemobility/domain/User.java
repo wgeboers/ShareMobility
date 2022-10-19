@@ -28,6 +28,7 @@ import java.util.Set;
 public abstract class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "user_id", nullable =  false)
     private Long id;
 
 

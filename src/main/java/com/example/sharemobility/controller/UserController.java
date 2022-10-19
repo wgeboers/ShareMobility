@@ -45,14 +45,14 @@ public class UserController {
     }
 
     @GetMapping("/login")
-    public ResponseEntity<User> getByUsernameAndPassword(@RequestParam String username, @RequestParam String password) {
-        User found = userRepository.findUserById(userService.userLogin(username, password));
+    public ResponseEntity<Optional<User>> getByUsernameAndPassword(@RequestParam String username, @RequestParam String password) {
+        Optional<User> found = userRepository.findById(userService.userLogin(username, password));
         logger.error("Values of username and password: " + username + " : " + password );
 
-        if (found == null) {
-            return ResponseEntity.noContent().build();
+        if (found.isPresent()) {
+            return ResponseEntity.ok(found);
         }
-        return ResponseEntity.ok(found);
+        return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/{id}")
