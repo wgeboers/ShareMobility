@@ -8,7 +8,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -69,10 +68,10 @@ public class ReservationController {
     }
 
     @PostMapping
-    public ResponseEntity<ReservationDto> reserve(@RequestBody ReservationDto reservationDto) {
+    public ResponseEntity<Reservation> reserve(@RequestBody ReservationDto reservationDto) {
         try{
             Reservation reservation = reservationService.addReservation(reservationDto.getUserId(), reservationDto.getCarId(), reservationDto.getStartReservation(), reservationDto.getEndReservation());
-            return new ResponseEntity<>(reservationDto, HttpStatus.CREATED);
+            return new ResponseEntity<>(reservation, HttpStatus.CREATED);
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().build();
         }
