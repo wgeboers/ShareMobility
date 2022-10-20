@@ -1,5 +1,6 @@
 package com.example.sharemobility.controller;
 
+import com.example.sharemobility.controller.dto.LoginDto;
 import com.example.sharemobility.domain.User;
 import com.example.sharemobility.repository.UserRepository;
 import com.example.sharemobility.service.UserService;
@@ -44,17 +45,27 @@ public class UserController {
         return ResponseEntity.ok(found);
     }
 
+//    @GetMapping("/login")
+//    public ResponseEntity<User> getByUsernameAndPassword(@RequestParam String username, @RequestParam String password) {
+//        User found = userRepository.findUserById(userService.userLogin(username, password));
+//        logger.error("Values of username and password: " + username + " : " + password );
+//
+//        if (found == null) {
+//            return ResponseEntity.noContent().build();
+//        }
+//        return ResponseEntity.ok(found);
+//    }
+
     @GetMapping("/login")
-    public ResponseEntity<User> getByUsernameAndPassword(@RequestParam String username, @RequestParam String password) {
-        User found = userRepository.findUserById(userService.userLogin(username, password));
-        logger.error("Values of username and password: " + username + " : " + password );
+    public ResponseEntity<User> getByUsernameAndPassword(@RequestBody LoginDto loginDto) {
+        User found = userRepository.findUserById(userService.userLogin(loginDto.getUsername(), loginDto.getPassword()));
+        logger.error("Values of username and password: " + loginDto.getUsername() + " : " + loginDto.getPassword() );
 
         if (found == null) {
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.ok(found);
     }
-
     @GetMapping("/{id}")
     public ResponseEntity<Optional<User>> getById(@PathVariable Long id) {
         Optional<User> found = userRepository.findById(id);
