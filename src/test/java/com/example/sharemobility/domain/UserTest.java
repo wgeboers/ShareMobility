@@ -6,17 +6,17 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class UserTest {
 
-//    @Test
-//    void checkGettersCarOwner() {
-//        CarOwner owner = new CarOwner("lotr", "letmein", "Bilbo" ,"Baggins", "The Shire");
-//
-//        // Testing the getters
-//        assertEquals("lotr", owner.getUsername());
-//        assertEquals("letmein", owner.getPassword());
-//        assertEquals("Bilbo", owner.getFirstname());
-//        assertEquals("Baggins", owner.getLastname());
-//        assertEquals("The Shire", owner.getAddress());
-//    }
+    @Test
+    void checkGettersCarOwner() {
+        CarOwner owner = new CarOwner("lotr", "letmein", "Bilbo" ,"Baggins", "The Shire");
+
+        // Testing the getters
+        assertEquals("lotr", owner.getUsername());
+        assertEquals("letmein", owner.getPassword());
+        assertEquals("Bilbo", owner.getFirstname());
+        assertEquals("Baggins", owner.getLastname());
+        assertEquals("The Shire", owner.getAddress());
+    }
 
     @Test
     void checkGettersCarUser() {
@@ -31,15 +31,15 @@ public class UserTest {
         assertEquals(0, carUser.getBonusPoints());
     }
 
-//    @Test
-//    void ceckCarAmountCarOwner() {
-//        CarOwner owner = new CarOwner("lotr", "letmein", "Bilbo" ,"Baggins", "The Shire");
-//
-//        assertEquals(0, owner.getCars().size());
-//
-//        owner.addCar(new Car("29-GHF-2"));
-//
-//        assertEquals(1, owner.getCars().size());
-//
-//    }
+    @Test
+    void checkCarAmountCarOwner() {
+        CarOwner owner = new CarOwner("lotr", "letmein", "Bilbo" ,"Baggins", "The Shire");
+
+        assertEquals(0, owner.getCars().size());
+
+        owner.addCar(new IceCar());
+
+        assertEquals(1, owner.getCars().size());
+
+    }
 }

@@ -9,9 +9,9 @@ import java.util.Set;
 @Entity //annotatie
 @Getter
 @Setter
-public class Reservation {
+public class Reservation{
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     @Column(name = "Reservation_id", nullable =  false, unique = true)
     private Long id;
 

@@ -5,11 +5,10 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import lombok.Getter;
 import lombok.Setter;
+import com.example.sharemobility.domain.Image;
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -24,11 +23,9 @@ import java.util.Set;
 @Setter
 public abstract class Car implements Calculator {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     @Column(name = "car_id", nullable = false)
     private Long id;
-
-
 
     @Column(nullable = false, length = 8, unique = true, updatable = false)
     private String licensePlate;
@@ -48,6 +45,9 @@ public abstract class Car implements Calculator {
     private int purchasePrice;
     private int amountOfYearsOwned;
 
+    @OneToMany
+    private List<Image> carImages;
+
     public Car() {
     }
 
@@ -55,22 +55,11 @@ public abstract class Car implements Calculator {
         return this.getPurchasePrice() + (this.getMileage() / this.getAmountOfYearsOwned()) * calculateUsageCostsPerKilometer();
     }
 
-    @Override
-    public String toString() {
-        return "Car{" +
-                "id=" + id +
-                ", licensePlate='" + licensePlate + '\'' +
-                ", carOwner=" + carOwner +
-                ", make='" + make + '\'' +
-                ", model='" + model + '\'' +
-                ", mileage=" + mileage +
-                ", hourlyRate=" + hourlyRate +
-                ", longitude=" + longitude +
-                ", latitude=" + latitude +
-                ", termsOfPickup='" + termsOfPickup + '\'' +
-                ", termsOfReturn='" + termsOfReturn + '\'' +
-                ", purchasePrice=" + purchasePrice +
-                ", amountOfYearsOwned=" + amountOfYearsOwned +
-                '}';
+    public void addImage(Image image) {
+        carImages.add(image);
+    }
+
+    public void removeImage(Image image) {
+        carImages.remove(image);
     }
 }

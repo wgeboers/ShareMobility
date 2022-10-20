@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @SpringBootTest
 public class UserRepositoryTest {
@@ -43,8 +44,8 @@ public class UserRepositoryTest {
     @Test
     void findUserById() {
         Long id = user1.getId();
-        User testResult = userRepository.findUserById(id);
-        assertEquals("Bilbo", testResult.getFirstname());
+        Optional<User> testResult = userRepository.findById(id);
+        assertEquals("Bilbo", testResult.get().getFirstname());
     }
 
 }
