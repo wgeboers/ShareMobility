@@ -100,7 +100,6 @@ public class UserController {
                 user.setLastname(userNewValues.getLastname());
                 user.setPassword(userNewValues.getPassword());
                 user.setAddress(userNewValues.getAddress());
-                //user.setUsername(userNewValues.getUsername());
 
                 return ResponseEntity.ok(userRepository.save(user));
             } else {
