@@ -59,7 +59,7 @@ public class CarController {
 
     @GetMapping("/{carMake}")
     public ResponseEntity<List<Car>> getByModel(@PathVariable String carModel) {
-        List<Car> found = new ArrayList<>(carRepository.findByMake(carModel));
+        List<Car> found = new ArrayList<>(carRepository.findByModel(carModel));
 
         if(found.isEmpty()) {
             return ResponseEntity.noContent().build();
