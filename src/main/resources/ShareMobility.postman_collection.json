@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\":\"wgeboers\",\r\n    \"password\":\"Welkom@120!\",\r\n    \"firstname\":\"Wesley\",\r\n    \"lastname\":\"Geboers\",\r\n    \"address\":\"Blokzijlpark 46\",\r\n    \"type\":\"CAR_USER\"\r\n}",
+							"raw": "{\r\n    \"username\":\"wgeboers\",\r\n    \"password\":\"Welkom@120!\",\r\n    \"firstname\":\"Wesley\",\r\n    \"lastname\":\"Geboers\",\r\n    \"address\":\"Blokzijlpark 46\",\r\n    \"type\":\"CAR_OWNER\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -41,7 +41,18 @@
 					"name": "GetAllUsers",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users"
+							]
+						}
 					},
 					"response": []
 				},
@@ -49,7 +60,19 @@
 					"name": "GetUserById",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/users/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"1"
+							]
+						}
 					},
 					"response": []
 				},
@@ -160,14 +183,15 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/cars",
+							"raw": "http://localhost:8080/cars/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"cars"
+								"cars",
+								"1"
 							]
 						}
 					},
@@ -176,17 +200,18 @@
 				{
 					"name": "DelCarById",
 					"request": {
-						"method": "GET",
+						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/cars",
+							"raw": "http://localhost:8080/cars/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"cars"
+								"cars",
+								"1"
 							]
 						}
 					},
@@ -199,7 +224,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"licensePlate\":\"TP-444-N\",\r\n    \"make\":\"Audi\",\r\n    \"model\":\"A4\",\r\n    \"mileage\":68000,\r\n    \"hourlyRate\":120.00,\r\n    \"longitude\":10.00,\r\n    \"latitude\":10.00,\r\n    \"termsOfPickup\":\"Gas is on the right\",\r\n    \"termsOfReturn\":\"Not in water\",\r\n    \"purchasePrice\": 100000,\r\n    \"amountOfYearsOwned\": 3,\r\n    \"type\":\"BEV\",\r\n    \"fuelType\":1\r\n}",
+							"raw": "{\r\n    \"licensePlate\":\"TP-444-N\",\r\n    \"make\":\"Audi\",\r\n    \"model\":\"A3\",\r\n    \"mileage\":68000,\r\n    \"hourlyRate\":120.00,\r\n    \"longitude\":10.00,\r\n    \"latitude\":10.00,\r\n    \"termsOfPickup\":\"Gas is on the right\",\r\n    \"termsOfReturn\":\"Not in water\",\r\n    \"purchasePrice\": 100000,\r\n    \"amountOfYearsOwned\": 3,\r\n    \"type\":\"BEV\",\r\n    \"fuelType\":1\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -230,7 +255,27 @@
 					"name": "PostRegistration",
 					"request": {
 						"method": "POST",
-						"header": []
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"carId\":2,\r\n    \"carOwnerId\":1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/carsByOwner",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"carsByOwner"
+							]
+						}
 					},
 					"response": []
 				},
@@ -238,7 +283,20 @@
 					"name": "GetAllRegistrationsByOwnerId",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/carsByOwner/cars_owned/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"carsByOwner",
+								"cars_owned",
+								"1"
+							]
+						}
 					},
 					"response": []
 				},
@@ -246,7 +304,27 @@
 					"name": "DelRegistration",
 					"request": {
 						"method": "DELETE",
-						"header": []
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"carId\":2,\r\n    \"carOwnerId\":1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/carsByOwner",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"carsByOwner"
+							]
+						}
 					},
 					"response": []
 				}
