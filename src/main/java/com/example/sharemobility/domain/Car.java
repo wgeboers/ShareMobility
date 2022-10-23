@@ -1,6 +1,6 @@
 package com.example.sharemobility.domain;
 
-import com.example.sharemobility.Calculator;
+import com.example.sharemobility.utilities.Calculator;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import lombok.Getter;

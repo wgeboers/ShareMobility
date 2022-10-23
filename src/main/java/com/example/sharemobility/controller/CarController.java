@@ -46,6 +46,29 @@ public class CarController {
 
     }
 
+    @GetMapping("/{carMake}")
+    public ResponseEntity<List<Car>> getByMake(@PathVariable String carMake) {
+        List<Car> found = new ArrayList<>(carRepository.findByMake(carMake));
+
+        if(found.isEmpty()) {
+            return ResponseEntity.noContent().build();
+
+        }
+        return ResponseEntity.ok(found);
+    }
+
+    @GetMapping("/{carModel}")
+    public ResponseEntity<List<Car>> getByModel(@PathVariable String carModel) {
+        List<Car> found = new ArrayList<>(carRepository.findByModel(carModel));
+
+        if(found.isEmpty()) {
+            return ResponseEntity.noContent().build();
+
+        }
+        return ResponseEntity.ok(found);
+
+    }
+
     @PostMapping
     public ResponseEntity<Car> newCar(@RequestBody Car newCar) {
         try {

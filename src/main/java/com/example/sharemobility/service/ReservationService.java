@@ -3,9 +3,9 @@ package com.example.sharemobility.service;
 import com.example.sharemobility.domain.Car;
 import com.example.sharemobility.domain.Reservation;
 import com.example.sharemobility.domain.User;
+import com.example.sharemobility.repository.CarRepository;
 import com.example.sharemobility.repository.ReservationRepository;
 import com.example.sharemobility.repository.UserRepository;
-import com.example.sharemobility.repository.CarRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;

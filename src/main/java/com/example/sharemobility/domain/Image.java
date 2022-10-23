@@ -1,6 +1,5 @@
 package com.example.sharemobility.domain;
 
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;

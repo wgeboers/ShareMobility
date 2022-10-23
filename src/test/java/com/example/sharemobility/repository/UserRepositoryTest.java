@@ -1,16 +1,14 @@
 package com.example.sharemobility.repository;
 
-import com.example.sharemobility.domain.CarOwner;
-import com.example.sharemobility.domain.CarUser;
 import com.example.sharemobility.domain.User;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 public class UserRepositoryTest {
