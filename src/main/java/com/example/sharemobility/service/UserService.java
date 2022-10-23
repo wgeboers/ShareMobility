@@ -5,7 +5,6 @@ import com.example.sharemobility.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.PropertyResourceBundle;
 
 @Service
 public class UserService {

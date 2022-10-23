@@ -1,6 +1,4 @@
-package com.example.sharemobility;
-
-import java.math.BigDecimal;
+package com.example.sharemobility.utilities;
 
 public interface Calculator {
     double calculateTCO();
