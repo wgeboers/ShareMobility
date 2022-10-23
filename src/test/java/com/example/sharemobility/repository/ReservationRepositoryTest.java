@@ -57,13 +57,13 @@ public class ReservationRepositoryTest {
 
     @Test
     void findByCarIdTest() {
-        List<Reservation> actualResult = reservationRepository.getByCarId(1L);
+        List<Reservation> actualResult = reservationRepository.getByCarId(car.getId());
         assertEquals(actualResult.size(),1);
     }
 
     @Test
     void findByUserIdTest() {
-        List<Reservation> actualResult = reservationRepository.getByUserId(5L);
+        List<Reservation> actualResult = reservationRepository.getByUserId(user.getId());
         assertEquals(actualResult.size(),1);
     }
 }
