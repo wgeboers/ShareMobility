@@ -46,7 +46,7 @@ public class CarController {
 
     }
 
-    @GetMapping("/{carMake}")
+    @GetMapping("/make/{carMake}")
     public ResponseEntity<List<Car>> getByMake(@PathVariable String carMake) {
         List<Car> found = new ArrayList<>(carRepository.findByMake(carMake));
 
@@ -57,7 +57,7 @@ public class CarController {
         return ResponseEntity.ok(found);
     }
 
-    @GetMapping("/{carModel}")
+    @GetMapping("/model/{carModel}")
     public ResponseEntity<List<Car>> getByModel(@PathVariable String carModel) {
         List<Car> found = new ArrayList<>(carRepository.findByModel(carModel));
 
