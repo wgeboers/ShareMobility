@@ -9,6 +9,7 @@ import org.mockito.MockitoAnnotations;
 import java.time.LocalDateTime;
 import java.time.Month;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 class ReservationTest {
@@ -47,5 +48,16 @@ class ReservationTest {
     @Test
     void testSetEndReservation() {
         reservation.setEndReservation(LocalDateTime.of(2022, Month.OCTOBER, 22, 21, 48, 4));
+    }
+
+    @Test
+    void checkGettersReservation() {
+        Reservation reservation = new Reservation(car,user,LocalDateTime.of(2022,10,23,10,00,00), LocalDateTime.of(2022,10,23,15,00,00));
+
+        // Testing the getters
+        assertEquals(car, reservation.getCar());
+        assertEquals(user, reservation.getUser());
+        assertEquals(LocalDateTime.of(2022,10,23,10,00,00), reservation.getStartReservation());
+        assertEquals(LocalDateTime.of(2022,10,23,15,00,00), reservation.getEndReservation());
     }
 }
