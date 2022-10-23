@@ -50,6 +50,8 @@ public class CarController {
     public ResponseEntity<Car> newCar(@RequestBody Car newCar) {
         try {
             Car car  = carRepository.save(newCar);
+            car.setUsageCostsPerKm(car.calculateUsageCostsPerKilometer());
+            car.setTotalCostOfOwnership(car.calculateTCO());
             return new ResponseEntity<>(car, HttpStatus.CREATED);
         } catch(IllegalArgumentException e) {
             logger.error("Error during creation of: " + newCar, e);
@@ -74,6 +76,8 @@ public class CarController {
                 carOld.setTermsOfReturn(updatedCar.getTermsOfReturn());
                 carOld.setPurchasePrice(updatedCar.getPurchasePrice());
                 carOld.setAmountOfYearsOwned(updatedCar.getAmountOfYearsOwned());
+                carOld.setUsageCostsPerKm(carOld.calculateUsageCostsPerKilometer());
+                carOld.setTotalCostOfOwnership(carOld.calculateTCO());
 
                 return ResponseEntity.ok(carRepository.save(carOld));
             } else {

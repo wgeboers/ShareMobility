@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import lombok.Getter;
 import lombok.Setter;
-import com.example.sharemobility.domain.Image;
 
 import javax.persistence.*;
 import java.util.List;
@@ -44,6 +43,9 @@ public abstract class Car implements Calculator {
     private String termsOfReturn;
     private int purchasePrice;
     private int amountOfYearsOwned;
+    private double usageCostsPerKm;
+    private double totalCostOfOwnership;
+
 
     @OneToMany
     private List<Image> carImages;
@@ -52,7 +54,7 @@ public abstract class Car implements Calculator {
     }
 
     public double calculateTCO() {
-        return this.getPurchasePrice() + (this.getMileage() / this.getAmountOfYearsOwned()) * calculateUsageCostsPerKilometer();
+        return (this.getPurchasePrice() + (double) this.getMileage() / this.getAmountOfYearsOwned() * usageCostsPerKm);
     }
 
     public void addImage(Image image) {

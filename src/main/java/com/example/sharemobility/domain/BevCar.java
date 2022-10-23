@@ -6,7 +6,6 @@ import lombok.Setter;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import java.math.BigDecimal;
 
 @Entity
 @Getter
@@ -15,11 +14,11 @@ import java.math.BigDecimal;
 @DiscriminatorValue("BEV")
 public class BevCar extends Car {
     private double rechargeTimeInMinutes;
-    private int maxRangeInKilometers;
-    private int maxCapacityOfBattery;
+    private double maxRangeInKilometers;
+    private double maxCapacityOfBattery;
 
     public double calculateUsageCostsPerKilometer() {
-        return (double) (this.maxRangeInKilometers / maxCapacityOfBattery) * 0.75;
+        return (maxRangeInKilometers / maxCapacityOfBattery) * 0.65;
     }
 
 }
