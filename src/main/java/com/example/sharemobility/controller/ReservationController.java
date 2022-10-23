@@ -24,6 +24,7 @@ public class ReservationController {
     }
 
     @GetMapping
+    //Het ophalen van alle reserveringen.
     public ResponseEntity<List<Reservation>> getAll() {
         List<Reservation> found = new ArrayList<>(reservationRepository.findAll());
 
@@ -35,6 +36,7 @@ public class ReservationController {
     }
 
     @GetMapping("/{id}")
+    //Het ophalen van 1 reservering aan de hand van een ID.
     public ResponseEntity<Optional<Reservation>> getById(@PathVariable Long id) {
         Optional<Reservation> found = reservationRepository.findById(id);
 
@@ -46,6 +48,7 @@ public class ReservationController {
     }
 
     @GetMapping("/byCar/{id}")
+    //Het ophalen van alle reserveringen per car ID.
     public ResponseEntity<List<Reservation>> getByCarId(@PathVariable Long id) {
         List<Reservation> found = new ArrayList<>(reservationRepository.getByCarId(id));
 
@@ -57,6 +60,7 @@ public class ReservationController {
     }
 
     @GetMapping("/byUser/{id}")
+    //Het ophalen van alle reserveringen per user ID.
     public ResponseEntity<List<Reservation>> getByUserId(@PathVariable Long id) {
         List<Reservation> found = new ArrayList<>(reservationRepository.getByUserId(id));
 
@@ -68,6 +72,7 @@ public class ReservationController {
     }
 
     @PostMapping
+    //Het aanmaken van een reservering.
     public ResponseEntity<Reservation> reserve(@RequestBody ReservationDto reservationDto) {
         try{
             Reservation reservation = reservationService.addReservation(reservationDto.getUserId(), reservationDto.getCarId(), reservationDto.getStartReservation(), reservationDto.getEndReservation());
@@ -78,6 +83,7 @@ public class ReservationController {
     }
 
     @PutMapping("/{id}")
+    //Het update van de start en eind tijd van 1 reservering aan de hand van een ID.
     public ResponseEntity<Reservation> updateReservation(@PathVariable Long id, @RequestBody ReservationDto reservationDto) {
         try {
             Optional<Reservation> optionalReservation = reservationRepository.findById(id);
@@ -97,6 +103,7 @@ public class ReservationController {
     }
 
     @DeleteMapping("/{id}")
+    //Het verwijderen van een reservering aan de hand van een ID.
     public ResponseEntity<HttpStatus> delete(@PathVariable Long id) {
         if((!reservationRepository.existsById(id))) {
            return ResponseEntity.notFound().build();
