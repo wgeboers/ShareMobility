@@ -23,7 +23,7 @@ import javax.persistence.*;
 
 public abstract class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "user_id", nullable =  false)
     private Long id;
 

@@ -22,7 +22,7 @@ import java.util.List;
 @Setter
 public abstract class Car implements Calculator {
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "car_id", nullable = false)
     private Long id;
 
