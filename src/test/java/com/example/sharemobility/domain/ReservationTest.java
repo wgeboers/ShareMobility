@@ -28,6 +28,7 @@ class ReservationTest {
     @Test
     void testSetId() {
         reservation.setId(1L);
+        assertEquals(1L, reservation.getId());
     }
 
     @Test
@@ -38,16 +39,19 @@ class ReservationTest {
     @Test
     void testSetUser() {
         reservation.setUser(new CarOwner("username", "password", "firstname", "lastname", "address"));
+        assertEquals("username", reservation.getUser().getUsername());
     }
 
     @Test
     void testSetStartReservation() {
         reservation.setStartReservation(LocalDateTime.of(2022, Month.OCTOBER, 22, 21, 48, 4));
+        assertEquals(LocalDateTime.of(2022, Month.OCTOBER, 22, 21, 48, 4), reservation.getStartReservation());
     }
 
     @Test
     void testSetEndReservation() {
         reservation.setEndReservation(LocalDateTime.of(2022, Month.OCTOBER, 22, 21, 48, 4));
+        assertEquals(LocalDateTime.of(2022, Month.OCTOBER, 22, 21, 48, 4), reservation.getEndReservation());
     }
 
     @Test
