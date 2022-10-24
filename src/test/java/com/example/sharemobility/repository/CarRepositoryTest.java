@@ -43,13 +43,13 @@ public class CarRepositoryTest {
 
     @Test
     void findByMakeTest() {
-        List<Car> actualResult = carRepository.findByMake("Volvo");
+        List<Car> actualResult = carRepository.findByMakeIgnoreCase("Volvo");
         assertEquals(actualResult.size(), 1);
     }
 
     @Test
     void findByModelTest() {
-        List<Car> actualResult = carRepository.findByModel("XC-40");
+        List<Car> actualResult = carRepository.findByModelIgnoreCase("XC-40");
         assertEquals(actualResult.size(), 1);
     }
 

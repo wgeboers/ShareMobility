@@ -8,7 +8,7 @@ import java.util.List;
 @Repository
 public interface CarRepository extends JpaRepository<Car, Long> {
 
-    List<Car> findByMake(String make);
-    List<Car> findByModel(String model);
+    List<Car> findByMakeIgnoreCase(String make);
+    List<Car> findByModelIgnoreCase(String model);
     List<Car> findByHourlyRate(double hourlyRate);
 }
