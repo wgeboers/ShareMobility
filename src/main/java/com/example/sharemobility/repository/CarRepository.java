@@ -11,4 +11,5 @@ public interface CarRepository extends JpaRepository<Car, Long> {
     List<Car> findByMakeIgnoreCase(String make);
     List<Car> findByModelIgnoreCase(String model);
     List<Car> findByHourlyRate(double hourlyRate);
+
 }

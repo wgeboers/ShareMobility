@@ -75,6 +75,7 @@ public class CarController {
             Car car  = carRepository.save(newCar);
             car.setUsageCostsPerKm(car.calculateUsageCostsPerKilometer());
             car.setTotalCostOfOwnership(car.calculateTCO());
+            System.out.println(newCar.toString());
             return new ResponseEntity<>(car, HttpStatus.CREATED);
         } catch(IllegalArgumentException e) {
             logger.error("Error during creation of: " + newCar, e);

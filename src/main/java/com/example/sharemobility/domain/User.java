@@ -33,6 +33,7 @@ public abstract class User {
     private String firstname;
     private String lastname;
     private String address;
+    private String userType;
 
     public User(String username, String password, String firstname, String lastname, String address) {
         this.username = username;
@@ -40,5 +41,6 @@ public abstract class User {
         this.firstname = firstname;
         this.lastname = lastname;
         this.address = address;
+        this.userType = userType;
     }
 }

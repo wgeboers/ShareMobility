@@ -60,10 +60,11 @@ public class UserController {
     public ResponseEntity<Optional<User>> getById(@PathVariable Long id) {
         Optional<User> found = userRepository.findById(id);
 
-        if (found.isEmpty()) {
-            return ResponseEntity.noContent().build();
+        if(found.isPresent()) {
+            return ResponseEntity.ok(found);
         }
-        return ResponseEntity.ok(found);
+
+        return ResponseEntity.noContent().build();
     }
 
     @PostMapping
